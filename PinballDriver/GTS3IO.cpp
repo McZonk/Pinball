@@ -17,7 +17,7 @@ namespace GTS3 {
 			return 24;
 		}
 
-		uint8_t getLampClearReturnPin() {
+		uint8_t getLampClearPin() {
 			return 25;
 		}
 	
@@ -41,7 +41,7 @@ namespace GTS3 {
 			}
 		
 			pinMode(getLampStrobePin(), OUTPUT);
-			pinMode(getLampClearReturnPin(), OUTPUT);
+			pinMode(getLampClearPin(), OUTPUT);
 			pinMode(getLampDataPin(), OUTPUT);
 			pinMode(getLampDataStrobePin(), OUTPUT);
 			

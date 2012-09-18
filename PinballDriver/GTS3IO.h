@@ -10,7 +10,7 @@ namespace GTS3 {
 		uint8_t getSolenoidStrobePin(const int index);
 	
 		uint8_t getLampStrobePin();
-		uint8_t getLampClearReturnPin();
+		uint8_t getLampClearPin();
 		uint8_t getLampDataPin();
 		uint8_t getLampDataStrobePin();
 	

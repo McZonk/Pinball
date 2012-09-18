@@ -80,8 +80,8 @@ namespace GTS3
 				digitalWrite(dataPin, dataValue ? HIGH : LOW);
 
                                 if(dataValue) {
-                                  Serial.print("Solenoid: ");
-                                  Serial.println(solenoidIndex * 8 + dataIndex, DEC);
+                                  //Serial.print("Solenoid: ");
+                                  //Serial.println(solenoidIndex * 8 + dataIndex, DEC);
                                 }
 #if 0
 				Serial.print(solenoidIndex, DEC);
@@ -96,9 +96,9 @@ namespace GTS3
 			
 			// strobe pin
 			const int solenoidStrobePin = IO::getSolenoidStrobePin(solenoidIndex);
-			delay(1);
+			//delay(1);
 			digitalWrite(solenoidStrobePin, HIGH);
-			delay(1);
+			//9delay(1);
 			digitalWrite(solenoidStrobePin, LOW);
 			
 #if 0

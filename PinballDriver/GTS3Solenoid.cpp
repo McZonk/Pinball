@@ -20,15 +20,15 @@ namespace GTS3 {
 			250, // 11
 			250, // 12
 			500, // 13 Car Reset
-			 50, // 14 Lamp Left Top
-			 50, // 15 Lamp Lightstrip
-			 50, // 16 Lamp Left Bottom
-			 50, // 17 Lamp Left Ramp
-			 50, // 18 Lamp Left Flipper
-			 50, // 19 Lamp Right Bottom
-			 50, // 20 Lamp Right Center
-			 50, // 21 Lamp Right Top
-			 50, // 22 Lamp Right Flipper
+			100, // 14 Lamp Left Top
+			100, // 15 Lamp Lightstrip
+			100, // 16 Lamp Left Bottom
+			100, // 17 Lamp Left Ramp
+			100, // 18 Lamp Left Flipper
+			100, // 19 Lamp Right Bottom
+			100, // 20 Lamp Right Center
+			100, // 21 Lamp Right Top
+			100, // 22 Lamp Right Flipper
 			  0, // 23 Car Playfield Flipper Relay
 			  0, // 24 Motor Relay
 			  0, // 25 Lightbox Relay

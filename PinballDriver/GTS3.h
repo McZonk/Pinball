@@ -33,7 +33,7 @@
 
 #define GTS3SolenoidCount 32
 
-#define GTS3_LAMP_COUNT 96
+#define GTS3LampCount 96
 #define GTS3_SWITCH_COUNT 96
 
 namespace GTS3 {
@@ -50,6 +50,8 @@ namespace GTS3 {
 		bool solenoidTargetValues[GTS3SolenoidCount];
 		bool solenoidCurrentValues[GTS3SolenoidCount];
 		uint16_t solenoidTimers[GTS3SolenoidCount];
+
+                bool lampValues[GTS3LampCount];
 	};
 
 } // namespace GTS3

@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
 #include "GTS3.h"
+#include "GTS3IO.h"
 #include "GTS3Solenoid.h"
 
 /*
@@ -87,6 +88,8 @@ static long oldMillis = 0;
 void setup() {
   Serial.begin(9600);
   
+  delay(2000);
+  
   pinball.setup();
   
   delay(2000);
@@ -101,6 +104,7 @@ void loop()
   oldMillis = millis();
 
   bool handle = false;  
+  bool lamp = false;
   int value = 0;
   while(Serial.available() >= 2)
   {
@@ -112,14 +116,28 @@ void loop()
         handle = true;
         value = (value * 10) + (c - '0');
       }
+      else if(c == 'l' || c == 'L')
+      {
+        lamp = true;
+      }
       else
       {
         Serial.print("I received: ");
         Serial.println(value, DEC);
       
-        if(handle && value >= 0 && value < 32)
+        if(lamp)
         {
-          pinball.solenoidTargetValues[value] = !pinball.solenoidTargetValues[value];
+          if(handle && value >= 0 && value < 96)
+          {
+            pinball.lampValues[value] = !pinball.lampValues[value];
+          }
+        }
+        else
+        {
+          if(handle && value >= 0 && value < 32)
+          {
+            pinball.solenoidTargetValues[value] = !pinball.solenoidTargetValues[value];
+          }
         }
         break;
       }
@@ -129,6 +147,57 @@ void loop()
   pinball.update(dt);
   
   pinball.handleIO();
+  
+  int LDATA = GTS3::IO::getLampDataPin();
+  int LSTB  = GTS3::IO::getLampStrobePin();
+  int LDS   = GTS3::IO::getLampDataStrobePin();
+  int LCLR  = GTS3::IO::getLampClearPin();
+  
+  int DATA0 = GTS3::IO::getDataPin(0);
+
+  for(int i = 0; i < 12; ++i)
+  {
+    digitalWrite(LCLR, HIGH);
+    //delayMicroseconds(1);
+    digitalWrite(LCLR, LOW);
+    
+    if(i == 0)
+    {
+      digitalWrite(LDATA, HIGH);
+    }
+
+    //delayMicroseconds(1);
+    digitalWrite(LSTB, HIGH);
+
+    //delayMicroseconds(1);
+    digitalWrite(LSTB, LOW);
+    
+    digitalWrite(LDATA, LOW);
+    
+    for(int k = 0; k < 8; ++k)
+    {
+     digitalWrite(DATA0 + k, pinball.lampValues[i * 8 + k]);
+     // digitalWrite(DATA0 + k, HIGH);
+    }
+    
+    //delayMicroseconds(1);
+    digitalWrite(LDS, HIGH);
+
+    //delayMicroseconds(1);
+    digitalWrite(LDS, LOW);
+    
+    //digitalWrite(LCLR, LOW);
+    
+    delay(1);
+  }
+  
+  // shift LDATA again to move out of lamp region 0-11,
+  
+  delayMicroseconds(10);
+  digitalWrite(LSTB, HIGH);
+
+  delayMicroseconds(10);
+  digitalWrite(LSTB, LOW);
   
   for(int i = 0; i < 32; ++i)
   {
