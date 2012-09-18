@@ -1,0 +1,82 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		50383C841608B18400FD4AB2 /* GTS3IO.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GTS3IO.cpp; sourceTree = "<group>"; };
+		50383C851608B18400FD4AB2 /* GTS3IO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTS3IO.h; sourceTree = "<group>"; };
+		50383C861608B57100FD4AB2 /* GTS3Solenoid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GTS3Solenoid.cpp; sourceTree = "<group>"; };
+		50383C871608B57100FD4AB2 /* GTS3Solenoid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTS3Solenoid.h; sourceTree = "<group>"; };
+		50B59E6815FD509300342E08 /* GTS3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTS3.h; sourceTree = "<group>"; };
+		50B59E6A15FD509A00342E08 /* GTS3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GTS3.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		50B59E5C15FD507000342E08 = {
+			isa = PBXGroup;
+			children = (
+				50B59E6815FD509300342E08 /* GTS3.h */,
+				50B59E6A15FD509A00342E08 /* GTS3.cpp */,
+				50383C851608B18400FD4AB2 /* GTS3IO.h */,
+				50383C841608B18400FD4AB2 /* GTS3IO.cpp */,
+				50383C871608B57100FD4AB2 /* GTS3Solenoid.h */,
+				50383C861608B57100FD4AB2 /* GTS3Solenoid.cpp */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		50B59E5E15FD507000342E08 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+			};
+			buildConfigurationList = 50B59E6115FD507000342E08 /* Build configuration list for PBXProject "PinballDriver" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 50B59E5C15FD507000342E08;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		50B59E6315FD507000342E08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		50B59E6415FD507000342E08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		50B59E6115FD507000342E08 /* Build configuration list for PBXProject "PinballDriver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50B59E6315FD507000342E08 /* Debug */,
+				50B59E6415FD507000342E08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 50B59E5E15FD507000342E08 /* Project object */;
+}
