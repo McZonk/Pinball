@@ -39,8 +39,11 @@ namespace GTS3 {
 		void update(const long dt);
 		
 		// this message should be called from an interrupt later
-		void handleIO();
-		
+		void handleSolenoids();
+
+		// this message should be called from an interrupt later
+		void handleLampsAndSwitches();
+
 	public:
 		bool solenoidTargetValues[GTS3SolenoidCount];
 		bool solenoidCurrentValues[GTS3SolenoidCount];

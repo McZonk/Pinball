@@ -106,7 +106,7 @@ void loop()
   bool handle = false;  
   bool lamp = false;
   int value = 0;
-  while(Serial.available() >= 2)
+  if(Serial.available() >= 2)
   {
     while(Serial.available() > 0)
     {
@@ -146,58 +146,8 @@ void loop()
   
   pinball.update(dt);
   
-  pinball.handleIO();
-  
-  int LDATA = GTS3::IO::getLampDataPin();
-  int LSTB  = GTS3::IO::getLampStrobePin();
-  int LDS   = GTS3::IO::getLampDataStrobePin();
-  int LCLR  = GTS3::IO::getLampClearPin();
-  
-  int DATA0 = GTS3::IO::getDataPin(0);
-
-  for(int i = 0; i < 12; ++i)
-  {
-    digitalWrite(LCLR, HIGH);
-    //delayMicroseconds(1);
-    digitalWrite(LCLR, LOW);
-    
-    if(i == 0)
-    {
-      digitalWrite(LDATA, HIGH);
-    }
-
-    //delayMicroseconds(1);
-    digitalWrite(LSTB, HIGH);
-
-    //delayMicroseconds(1);
-    digitalWrite(LSTB, LOW);
-    
-    digitalWrite(LDATA, LOW);
-    
-    for(int k = 0; k < 8; ++k)
-    {
-     digitalWrite(DATA0 + k, pinball.lampValues[i * 8 + k]);
-     // digitalWrite(DATA0 + k, HIGH);
-    }
-    
-    //delayMicroseconds(1);
-    digitalWrite(LDS, HIGH);
-
-    //delayMicroseconds(1);
-    digitalWrite(LDS, LOW);
-    
-    //digitalWrite(LCLR, LOW);
-    
-    delay(1);
-  }
-  
-  // shift LDATA again to move out of lamp region 0-11,
-  
-  delayMicroseconds(10);
-  digitalWrite(LSTB, HIGH);
-
-  delayMicroseconds(10);
-  digitalWrite(LSTB, LOW);
+  pinball.handleSolenoids();
+  pinball.handleLampsAndSwitches();
   
   for(int i = 0; i < 32; ++i)
   {
