@@ -25,12 +25,6 @@
  20 Ground
  */
 
-/*
- 
- 
- 
- */
-
 #define GTS3SolenoidCount 32
 
 #define GTS3LampCount 96
@@ -44,6 +38,7 @@ namespace GTS3 {
 		
 		void update(const long dt);
 		
+		// this message should be called from an interrupt later
 		void handleIO();
 		
 	public:
@@ -51,7 +46,7 @@ namespace GTS3 {
 		bool solenoidCurrentValues[GTS3SolenoidCount];
 		uint16_t solenoidTimers[GTS3SolenoidCount];
 
-                bool lampValues[GTS3LampCount];
+		bool lampValues[GTS3LampCount];
 	};
 
 } // namespace GTS3
