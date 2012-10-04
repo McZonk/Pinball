@@ -32,6 +32,22 @@ namespace GTS3 {
 		uint8_t getDataPin(const int index) {
 			return 34 + index;
 		}
+		
+		uint8_t getSlamPin() {
+			return 50;
+		}
+		
+		uint8_t getTiltPin() {
+			return 51;
+		}
+		
+		uint8_t getTestPin() {
+			return 52;
+		}
+		
+		uint8_t getReturnPin(const int index) {
+			return 42 + index;
+		}
 	
 		void setup() {
 			pinMode(getMasterResetPin(), OUTPUT);
@@ -47,6 +63,14 @@ namespace GTS3 {
 			
 			for(int i = 0; i < 8; ++i) {
 				pinMode(getDataPin(i), OUTPUT);
+			}
+			
+			pinMode(getSlamPin(), INPUT);
+			pinMode(getTiltPin(), INPUT);
+			pinMode(getTestPin(), INPUT);
+
+			for(int i = 0; i < 8; ++i) {
+				pinMode(getReturnPin[i], INPUT);
 			}
 		}
 	} // namespace IO

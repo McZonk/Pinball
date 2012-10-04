@@ -15,7 +15,13 @@ namespace GTS3 {
 		uint8_t getLampDataStrobePin();
 	
 		uint8_t getDataPin(const int index);
-	
+
+		uint8_t getSlamPin();
+		uint8_t getTiltPin();
+		uint8_t getTestPin();
+
+		uint8_t getReturnPin(const int index);
+
 		void setup();
 	
 	} // namespace IO

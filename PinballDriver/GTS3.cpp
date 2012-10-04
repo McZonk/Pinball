@@ -97,8 +97,28 @@ namespace GTS3 {
 			digitalWrite(LDS, HIGH);
 			digitalWrite(LDS, LOW);
 
-			// hold lamp values, work fine from up to 3000, but shorter is better
-			delayMicroseconds(1000);
+			delayMicroseconds(500);
+			
+			// read switches
+			for(int k = 0; k < 8; ++k) {
+				int returnPin = GTS3::IO::getReturnPin(k);
+				int value = digitalRead(returnPin);
+				
+				if(switchValues[i * 8 + k] != ((value == HIGH) ? false : true)) {
+					Serial.print("CHANGED ");
+					Serial.print(i, HEX);
+					Serial.print(k, DEC);
+					Serial.print(" ");
+					Serial.print(i * 8 + k, DEC);
+					Serial.print(" ");
+					Serial.print(value ? false : true, DEC);
+					Serial.println("");
+				}
+				
+				switchValues[i * 8 + k] = (value == HIGH) ? false : true;
+			}
+			
+			delayMicroseconds(500);
 
 			// clear bus
 			for(int k = 0; k < 8; ++k) {
