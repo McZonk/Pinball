@@ -70,18 +70,15 @@ namespace GTS3 {
 		const int LSTB  = GTS3::IO::getLampStrobePin();
 		const int LDS   = GTS3::IO::getLampDataStrobePin();
 		
+		// clear bus
+		for(int k = 0; k < 8; ++k) {
+			const int dataPin = GTS3::IO::getDataPin(k);
+			digitalWrite(dataPin, LOW);
+		}
+		digitalWrite(LDS, HIGH);
+		digitalWrite(LDS, LOW);
 
 		for(int i = 0; i < 12; ++i) {
-			// clear bus
-			for(int k = 0; k < 8; ++k) {
-				const bool dataValue = lampValues[i * 8 + k];
-				
-				const int dataPin = GTS3::IO::getDataPin(k);
-				digitalWrite(dataPin, LOW);
-			}
-			digitalWrite(LDS, HIGH);
-			digitalWrite(LDS, LOW);
-			
 			digitalWrite(LDATA, i == 0 ? HIGH : LOW);
 
 			// shifts the matrix row by one
@@ -102,6 +99,14 @@ namespace GTS3 {
 
 			// hold lamp values, work fine from up to 3000, but shorter is better
 			delayMicroseconds(1000);
+
+			// clear bus
+			for(int k = 0; k < 8; ++k) {
+				const int dataPin = GTS3::IO::getDataPin(k);
+				digitalWrite(dataPin, LOW);
+			}
+			digitalWrite(LDS, HIGH);
+			digitalWrite(LDS, LOW);
 		}
 
 		
