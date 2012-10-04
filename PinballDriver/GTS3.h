@@ -44,6 +44,9 @@ namespace GTS3 {
 		// this message should be called from an interrupt later
 		void handleLampsAndSwitches();
 
+		void handleTilt();
+		void handleSlam();
+
 	public:
 		bool solenoidTargetValues[GTS3SolenoidCount];
 		bool solenoidCurrentValues[GTS3SolenoidCount];

@@ -92,11 +92,21 @@ void setup() {
   
   pinball.setup();
   
+  attachInterrupt(0, slamInterrupt, CHANGE);
+  attachInterrupt(1, tiltInterrupt, CHANGE);
+  
   delay(2000);
   
   oldMillis = millis();
 }
 
+void slamInterrupt() {
+  pinball.handleSlam();
+}
+
+void tiltInterrupt() {
+  pinball.handleTilt();
+}
 
 void loop()
 {

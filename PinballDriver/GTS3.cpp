@@ -134,30 +134,20 @@ namespace GTS3 {
 		digitalWrite(LSTB, HIGH);
 		digitalWrite(LSTB, LOW);
 		
-		{
-			const int slamPin = GTS3::IO::getSlamPin();
-			const int value = digitalRead(slamPin);
-			
-			if(slamValue != ((value == HIGH) ? false : true)) {
-				Serial.print("SLAM ");
-				Serial.print(value ? false : true, DEC);
-				Serial.println("");
-			}
-			
-			slamValue = (value == HIGH) ? false : true;
+		static bool prevSlamValue = false;
+		if(slamValue != prevSlamValue) {
+			Serial.print("SLAM: ");
+			Serial.println(slamValue, DEC);
+
+			prevSlamValue = slamValue;
 		}
-		
-		{
-			const int tiltPin = GTS3::IO::getTiltPin();
-			const int value = digitalRead(tiltPin);
-			
-			if(tiltValue != ((value == HIGH) ? false : true)) {
-				Serial.print("TILT ");
-				Serial.print(value ? false : true, DEC);
-				Serial.println("");
-			}
-			
-			tiltValue = (value == HIGH) ? false : true;
+
+		static bool prevTiltValue = false;
+		if(tiltValue != prevTiltValue) {
+			Serial.print("TILT: ");
+			Serial.println(tiltValue, DEC);
+
+			prevTiltValue = tiltValue;
 		}
 		
 		{
@@ -172,6 +162,20 @@ namespace GTS3 {
 			
 			testValue = (value == HIGH) ? false : true;
 		}
+	}
+
+	void Pinball::handleTilt() {
+		const int tiltPin = GTS3::IO::getTiltPin();
+		const int value = digitalRead(tiltPin);
+
+		tiltValue = (value == HIGH) ? false : true;
+	}
+
+	void Pinball::handleSlam() {
+		const int slamPin = GTS3::IO::getSlamPin();
+		const int value = digitalRead(slamPin);
+
+		slamValue = (value == HIGH) ? false : true;
 	}
 
 } // namespace GTS3

@@ -34,15 +34,15 @@ namespace GTS3 {
 		}
 		
 		uint8_t getSlamPin() {
-			return 50;
+			return 2;
 		}
 		
 		uint8_t getTiltPin() {
-			return 51;
+			return 3;
 		}
 		
 		uint8_t getTestPin() {
-			return 52;
+			return 4;
 		}
 		
 		uint8_t getReturnPin(const int index) {
