@@ -49,6 +49,10 @@ namespace GTS3 {
 		bool solenoidCurrentValues[GTS3SolenoidCount];
 		uint16_t solenoidTimers[GTS3SolenoidCount];
 
+		bool slamValue;
+		bool tiltValue;
+		bool testValue;
+		
 		bool lampValues[GTS3LampCount];
 		bool switchValues[GTS3SwitchCount];
 	};

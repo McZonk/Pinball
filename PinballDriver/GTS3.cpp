@@ -101,8 +101,8 @@ namespace GTS3 {
 			
 			// read switches
 			for(int k = 0; k < 8; ++k) {
-				int returnPin = GTS3::IO::getReturnPin(k);
-				int value = digitalRead(returnPin);
+				const int returnPin = GTS3::IO::getReturnPin(k);
+				const int value = digitalRead(returnPin);
 				
 				if(switchValues[i * 8 + k] != ((value == HIGH) ? false : true)) {
 					Serial.print("CHANGED ");
@@ -133,6 +133,45 @@ namespace GTS3 {
 		// shifts the matrix row, all rows are now 0
 		digitalWrite(LSTB, HIGH);
 		digitalWrite(LSTB, LOW);
+		
+		{
+			const int slamPin = GTS3::IO::getSlamPin();
+			const int value = digitalRead(slamPin);
+			
+			if(slamValue != ((value == HIGH) ? false : true)) {
+				Serial.print("SLAM ");
+				Serial.print(value ? false : true, DEC);
+				Serial.println("");
+			}
+			
+			slamValue = (value == HIGH) ? false : true;
+		}
+		
+		{
+			const int tiltPin = GTS3::IO::getTiltPin();
+			const int value = digitalRead(tiltPin);
+			
+			if(tiltValue != ((value == HIGH) ? false : true)) {
+				Serial.print("TILT ");
+				Serial.print(value ? false : true, DEC);
+				Serial.println("");
+			}
+			
+			tiltValue = (value == HIGH) ? false : true;
+		}
+		
+		{
+			const int testPin = GTS3::IO::getTestPin();
+			const int value = digitalRead(testPin);
+			
+			if(testValue != ((value == HIGH) ? false : true)) {
+				Serial.print("TEST ");
+				Serial.print(value ? false : true, DEC);
+				Serial.println("");
+			}
+			
+			testValue = (value == HIGH) ? false : true;
+		}
 	}
 
 } // namespace GTS3
