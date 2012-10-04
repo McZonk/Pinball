@@ -144,6 +144,20 @@ void loop()
     }
   }
   
+  static long lt = 0;
+  static long li = 0;
+  
+  lt += dt;
+  while(lt > 50)
+  {
+    lt -= 50;
+    
+    pinball.lampValues[li] = !pinball.lampValues[li];
+    
+    li += 1;
+    li %= 56;
+  }
+  
   pinball.update(dt);
   
   pinball.handleSolenoids();
