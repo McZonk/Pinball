@@ -70,7 +70,7 @@ namespace GTS3 {
 			pinMode(getTestPin(), INPUT);
 
 			for(int i = 0; i < 8; ++i) {
-				pinMode(getReturnPin[i], INPUT);
+				pinMode(getReturnPin(i), INPUT);
 			}
 		}
 	} // namespace IO
