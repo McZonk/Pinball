@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		50179FB21621FFD2001D1554 /* GTS3Serial.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GTS3Serial.cpp; sourceTree = "<group>"; };
-		50179FB31621FFD2001D1554 /* GTS3Serial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTS3Serial.h; sourceTree = "<group>"; };
 		50383C841608B18400FD4AB2 /* GTS3IO.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GTS3IO.cpp; sourceTree = "<group>"; };
 		50383C851608B18400FD4AB2 /* GTS3IO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTS3IO.h; sourceTree = "<group>"; };
 		50383C861608B57100FD4AB2 /* GTS3Solenoid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GTS3Solenoid.cpp; sourceTree = "<group>"; };
@@ -29,8 +27,6 @@
 				50383C841608B18400FD4AB2 /* GTS3IO.cpp */,
 				50383C871608B57100FD4AB2 /* GTS3Solenoid.h */,
 				50383C861608B57100FD4AB2 /* GTS3Solenoid.cpp */,
-				50179FB31621FFD2001D1554 /* GTS3Serial.h */,
-				50179FB21621FFD2001D1554 /* GTS3Serial.cpp */,
 			);
 			sourceTree = "<group>";
 		};

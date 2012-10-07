@@ -1,5 +1,7 @@
 #include <Arduino.h>
 
+#include <TimerOne.h>
+
 #include "GTS3.h"
 #include "GTS3IO.h"
 #include "GTS3Solenoid.h"
@@ -95,21 +97,27 @@ void setup() {
 	attachInterrupt(0, slamInterrupt, CHANGE);
 	attachInterrupt(1, tiltInterrupt, CHANGE);
   
+	Timer1.initialize(470);
+	Timer1.attachInterrupt(timerInterrupt);
+	
 	delay(2000);
   
 	oldMillis = millis();
 }
 
 void slamInterrupt() {
-	pinball.handleSlam();
+	pinball.handleSlamInterrupt();
 }
 
 void tiltInterrupt() {
-	pinball.handleTilt();
+	pinball.handleTiltInterrupt();
 }
 
-void loop()
-{
+void timerInterrupt() {
+	pinball.handleTimerInterrupt();
+}
+
+void loop() {
 	const long dt = millis() - oldMillis;
 	oldMillis = millis();
   
@@ -127,14 +135,14 @@ void loop()
 	}
   
 	pinball.update(dt);
-  
-	pinball.handleSolenoids();
-	pinball.handleLampsAndSwitches();
-  
+
+#if 0
 	for(int i = 0; i < 32; ++i) {
 		if(GTS3::Solenoid::getSolenoidHoldTime(i)) {
 			pinball.solenoidTargetValues[i] = false;
 		}
 	}
+#endif
+	
+	delayMicroseconds(500);
 }
-

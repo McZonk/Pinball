@@ -38,14 +38,17 @@ namespace GTS3 {
 		
 		void update(const long dt);
 		
-		// this message should be called from an interrupt later
-		void handleSolenoids();
+		void handleTimerInterrupt();
 
-		// this message should be called from an interrupt later
-		void handleLampsAndSwitches();
+		void handleTiltInterrupt();
+		void handleSlamInterrupt();
+		
+		void performSolenoidCycle();
 
-		void handleTilt();
-		void handleSlam();
+		void performLampCycle(const int row);
+		void performLampCycleEnd();
+		
+		void performSwitchCycle(const int row);
 
 	public:
 		bool solenoidTargetValues[GTS3SolenoidCount];
@@ -58,6 +61,8 @@ namespace GTS3 {
 		bool slamValue;
 		bool tiltValue;
 		bool testValue;
+		
+		int interruptCycleStep;
 	};
 
 } // namespace GTS3
