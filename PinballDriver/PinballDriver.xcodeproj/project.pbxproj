@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		50179FB21621FFD2001D1554 /* GTS3Serial.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GTS3Serial.cpp; sourceTree = "<group>"; };
+		50179FB31621FFD2001D1554 /* GTS3Serial.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTS3Serial.h; sourceTree = "<group>"; };
 		50383C841608B18400FD4AB2 /* GTS3IO.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GTS3IO.cpp; sourceTree = "<group>"; };
 		50383C851608B18400FD4AB2 /* GTS3IO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTS3IO.h; sourceTree = "<group>"; };
 		50383C861608B57100FD4AB2 /* GTS3Solenoid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GTS3Solenoid.cpp; sourceTree = "<group>"; };
 		50383C871608B57100FD4AB2 /* GTS3Solenoid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTS3Solenoid.h; sourceTree = "<group>"; };
+		50A955C51622130F00CB4234 /* PinballDriver.ino */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; path = PinballDriver.ino; sourceTree = "<group>"; };
 		50B59E6815FD509300342E08 /* GTS3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTS3.h; sourceTree = "<group>"; };
 		50B59E6A15FD509A00342E08 /* GTS3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GTS3.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -19,12 +22,15 @@
 		50B59E5C15FD507000342E08 = {
 			isa = PBXGroup;
 			children = (
+				50A955C51622130F00CB4234 /* PinballDriver.ino */,
 				50B59E6815FD509300342E08 /* GTS3.h */,
 				50B59E6A15FD509A00342E08 /* GTS3.cpp */,
 				50383C851608B18400FD4AB2 /* GTS3IO.h */,
 				50383C841608B18400FD4AB2 /* GTS3IO.cpp */,
 				50383C871608B57100FD4AB2 /* GTS3Solenoid.h */,
 				50383C861608B57100FD4AB2 /* GTS3Solenoid.cpp */,
+				50179FB31621FFD2001D1554 /* GTS3Serial.h */,
+				50179FB21621FFD2001D1554 /* GTS3Serial.cpp */,
 			);
 			sourceTree = "<group>";
 		};

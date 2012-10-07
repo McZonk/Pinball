@@ -34,11 +34,11 @@ namespace GTS3 {
 		}
 		
 		uint8_t getSlamPin() {
-			return 2;
+			return 2; // interrupt pin
 		}
 		
 		uint8_t getTiltPin() {
-			return 3;
+			return 3; // interrupt pin
 		}
 		
 		uint8_t getTestPin() {

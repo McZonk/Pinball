@@ -86,99 +86,55 @@ GTS3::Pinball pinball;
 static long oldMillis = 0;
 
 void setup() {
-  Serial.begin(9600);
+	Serial.begin(9600);
   
-  delay(2000);
+	delay(2000);
+
+	pinball.setup();
   
-  pinball.setup();
+	attachInterrupt(0, slamInterrupt, CHANGE);
+	attachInterrupt(1, tiltInterrupt, CHANGE);
   
-  attachInterrupt(0, slamInterrupt, CHANGE);
-  attachInterrupt(1, tiltInterrupt, CHANGE);
+	delay(2000);
   
-  delay(2000);
-  
-  oldMillis = millis();
+	oldMillis = millis();
 }
 
 void slamInterrupt() {
-  pinball.handleSlam();
+	pinball.handleSlam();
 }
 
 void tiltInterrupt() {
-  pinball.handleTilt();
+	pinball.handleTilt();
 }
 
 void loop()
 {
-  const long dt = millis() - oldMillis;
-  oldMillis = millis();
-
-  bool handle = false;  
-  bool lamp = false;
-  int value = 0;
-  if(Serial.available() >= 2)
-  {
-    while(Serial.available() > 0)
-    {
-      int c = Serial.read();
-      if(c >= '0' && c <= '9')
-      {
-        handle = true;
-        value = (value * 10) + (c - '0');
-      }
-      else if(c == 'l' || c == 'L')
-      {
-        lamp = true;
-      }
-      else
-      {
-        Serial.print("I received: ");
-        Serial.println(value, DEC);
-      
-        if(lamp)
-        {
-          if(handle && value >= 0 && value < 96)
-          {
-            pinball.lampValues[value] = !pinball.lampValues[value];
-          }
-        }
-        else
-        {
-          if(handle && value >= 0 && value < 32)
-          {
-            pinball.solenoidTargetValues[value] = !pinball.solenoidTargetValues[value];
-          }
-        }
-        break;
-      }
-    }
-  }
+	const long dt = millis() - oldMillis;
+	oldMillis = millis();
   
-  static long lt = 0;
-  static long li = 0;
+	static long lt = 0;
+	static long li = 0;
   
-  lt += dt;
-  while(lt > 50)
-  {
-    lt -= 50;
+	lt += dt;
+	while(lt > 50) {
+		lt -= 50;
     
-    pinball.lampValues[li] = !pinball.lampValues[li];
+		pinball.lampValues[li] = !pinball.lampValues[li];
     
-    li += 1;
-    li %= 56;
-  }
+		li += 1;
+		li %= 56;
+	}
   
-  pinball.update(dt);
+	pinball.update(dt);
   
-  pinball.handleSolenoids();
-  pinball.handleLampsAndSwitches();
+	pinball.handleSolenoids();
+	pinball.handleLampsAndSwitches();
   
-  for(int i = 0; i < 32; ++i)
-  {
-    if(GTS3::Solenoid::getSolenoidHoldTime(i))
-    {
-      pinball.solenoidTargetValues[i] = false;
-    }
-  }
+	for(int i = 0; i < 32; ++i) {
+		if(GTS3::Solenoid::getSolenoidHoldTime(i)) {
+			pinball.solenoidTargetValues[i] = false;
+		}
+	}
 }
 
