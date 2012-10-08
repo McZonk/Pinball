@@ -14,7 +14,30 @@ namespace GTS3 {
 	}
 
 	void Pinball::update(const long dt) {
-		noInterrupts();
+		solenoidTargetValues[31] = true; // playfield
+		
+		solenoidTargetValues[ 9] = switchValues[11]; // blanka
+		solenoidTargetValues[10] = switchValues[12]; // vega
+		
+		solenoidTargetValues[ 3] = switchValues[27]; // honda
+		solenoidTargetValues[ 4] = switchValues[28]; // bison
+
+		solenoidTargetValues[28] = switchValues[17]; // outhole
+		solenoidTargetValues[27] = switchValues[ 4]; // release
+
+		solenoidTargetValues[ 1] = switchValues[ 9]; // left rubber
+		solenoidTargetValues[ 2] = switchValues[10]; // right rubber
+		
+		solenoidTargetValues[ 0] = switchValues[ 8]; // pop bumper
+		
+		if(switchValues[80]) {
+			solenoidTargetValues[7] = true;
+		}
+		if(switchValues[93]) {
+			solenoidTargetValues[7] = false;
+		}
+
+//		noInterrupts();
 		
 		for(int i = 0; i < GTS3SolenoidCount; ++i) {
 			// update timer
@@ -45,7 +68,7 @@ namespace GTS3 {
 			}
 		}
 		
-		interrupts();
+//		interrupts();
 	}
 	
 	void Pinball::handleTimerInterrupt() {
@@ -171,21 +194,13 @@ namespace GTS3 {
 		digitalWrite(LSTB, HIGH);
 		digitalWrite(LSTB, LOW);
 		
-#if 0
 		// read remaining switches
 		{
 			const int testPin = GTS3::IO::getTestPin();
 			const int value = digitalRead(testPin);
 			
-			if(testValue != ((value == HIGH) ? false : true)) {
-				Serial.print("TEST ");
-				Serial.print(value ? false : true, DEC);
-				Serial.println("");
-			}
-			
 			testValue = (value == HIGH) ? false : true;
 		}
-#endif
 	}
 	
 	void Pinball::performSwitchCycle(const int row) {

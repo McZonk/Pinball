@@ -90,7 +90,7 @@ static long oldMillis = 0;
 void setup() {
 	Serial.begin(9600);
   
-	delay(2000);
+	delay(1000);
 
 	pinball.setup();
   
@@ -100,7 +100,7 @@ void setup() {
 	Timer1.initialize(470);
 	Timer1.attachInterrupt(timerInterrupt);
 	
-	delay(2000);
+	delay(1000);
   
 	oldMillis = millis();
 }
@@ -135,14 +135,6 @@ void loop() {
 	}
   
 	pinball.update(dt);
-
-#if 0
-	for(int i = 0; i < 32; ++i) {
-		if(GTS3::Solenoid::getSolenoidHoldTime(i)) {
-			pinball.solenoidTargetValues[i] = false;
-		}
-	}
-#endif
 	
-	delayMicroseconds(500);
+	delayMicroseconds(3000);
 }
