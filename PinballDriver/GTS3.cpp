@@ -27,7 +27,10 @@ namespace GTS3 {
 
 		solenoidTargetValues[ 1] = switchValues[ 9]; // left rubber
 		solenoidTargetValues[ 2] = switchValues[10]; // right rubber
-		
+
+		solenoidTargetValues[18] = switchValues[ 9]; // left rubber
+		solenoidTargetValues[22] = switchValues[10]; // right rubber
+
 		solenoidTargetValues[ 0] = switchValues[ 8]; // pop bumper
 
 		solenoidTargetValues[ 5] = switchValues[ 4]; // left rail
