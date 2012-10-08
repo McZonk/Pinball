@@ -29,7 +29,11 @@ namespace GTS3 {
 		solenoidTargetValues[ 2] = switchValues[10]; // right rubber
 		
 		solenoidTargetValues[ 0] = switchValues[ 8]; // pop bumper
+
+		solenoidTargetValues[ 5] = switchValues[ 4]; // left rail
+		solenoidTargetValues[ 6] = switchValues[ 4]; // right rail
 		
+		// left ramp up and down
 		if(switchValues[80]) {
 			solenoidTargetValues[7] = true;
 		}
