@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <SPI.h>
 
 #define DisplayEnablePin 3
 #define RowDataPin 4
@@ -8,7 +9,13 @@
 #define DotClockPin 51
 #define DotDataPin 53
 
+#include "McZonk.h"
+
 void setup() {
+  SPI.begin();
+  SPI.setBitOrder(LSBFIRST);
+  SPI.setDataMode(SPI_MODE3);
+  
   pinMode(DisplayEnablePin, OUTPUT);
   pinMode(RowDataPin, OUTPUT);
   pinMode(RowClockPin, OUTPUT);
@@ -27,19 +34,15 @@ void setup() {
 }
 
 void loop() {
-  int on = 0;
-  for(int y = 0; y < 32; ++y) {
-    delayMicroseconds(10);
-    
-    for(int x = 0; x < 128; ++x) {
-      digitalWrite(DotDataPin, on & 1 ? HIGH : LOW);
+  int index = 0;
 
-      digitalWrite(DotClockPin, HIGH);
-      digitalWrite(DotClockPin, LOW);
-      
-      on++;
+  for(int y = 0; y < 32; ++y) {
+    delayMicroseconds(100);
+
+    for(int x = 0; x < 128 / 8; ++x) {
+      SPI.transfer(McZonk_bits[index] ^ 0xff);
+      ++index;
     }
-    on++;
     
     digitalWrite(ColLatchPin, HIGH);
     digitalWrite(ColLatchPin, LOW);
