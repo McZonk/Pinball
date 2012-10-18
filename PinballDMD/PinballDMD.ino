@@ -1,13 +1,14 @@
 #include <Arduino.h>
 #include <SPI.h>
 
-#define DisplayEnablePin 3
-#define RowDataPin 4
-#define RowClockPin 5
-#define ColLatchPin 6
+#define DisplayEnablePin 43
+#define RowDataPin 45
+#define RowClockPin 47
+#define ColLatchPin 49
 
-#define DotClockPin 51
-#define DotDataPin 53
+#define DotClockPin 51 // MISO
+#define DotDataPin 52 // SCLK
+#define SlaveSelectPin 53
 
 #include "McZonk.h"
 
@@ -15,20 +16,22 @@ void setup() {
   SPI.begin();
   SPI.setBitOrder(LSBFIRST);
   SPI.setDataMode(SPI_MODE3);
-  
+
   pinMode(DisplayEnablePin, OUTPUT);
   pinMode(RowDataPin, OUTPUT);
   pinMode(RowClockPin, OUTPUT);
   pinMode(ColLatchPin, OUTPUT);
   pinMode(DotClockPin, OUTPUT);
   pinMode(DotDataPin, OUTPUT);
-  
+  pinMode(SlaveSelectPin, OUTPUT);
+
   digitalWrite(DisplayEnablePin, LOW);
   digitalWrite(RowDataPin, LOW);
   digitalWrite(RowClockPin, HIGH); // high
   digitalWrite(ColLatchPin, LOW);
   digitalWrite(DotClockPin, LOW);
   digitalWrite(DotDataPin, LOW);
+  digitalWrite(SlaveSelectPin, LOW);
   
   delay(1);
 }
