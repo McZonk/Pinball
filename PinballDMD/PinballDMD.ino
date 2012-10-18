@@ -2,13 +2,13 @@
 #include <SPI.h>
 #include <TimerOne.h>
 
-#define DisplayEnablePin 43
-#define RowDataPin 45
-#define RowClockPin 47
-#define ColLatchPin 49
+#define DisplayEnablePin 46 // 1
+#define RowDataPin 47 // 3
+#define RowClockPin 48 // 5
+#define ColLatchPin 49 // 7
 
-#define DotClockPin 51 // MISO
-#define DotDataPin 52 // SCLK
+#define DotClockPin 51 // 9 MISO
+#define DotDataPin 52 // 11 SCLK
 #define SlaveSelectPin 53
 
 #include "McZonk.h"
