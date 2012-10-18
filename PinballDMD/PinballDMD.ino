@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <SPI.h>
+#include <TimerOne.h>
 
 #define DisplayEnablePin 43
 #define RowDataPin 45
@@ -34,35 +35,38 @@ void setup() {
   digitalWrite(SlaveSelectPin, LOW);
   
   delay(1);
+  
+  Timer1.initialize(100);
+  Timer1.attachInterrupt(update);
 }
 
 void loop() {
-  int index = 0;
-
-  for(int y = 0; y < 32; ++y) {
-    delayMicroseconds(100);
-
-    for(int x = 0; x < 128 / 8; ++x) {
-      SPI.transfer(McZonk_bits[index] ^ 0xff);
-      ++index;
-    }
-    
-    digitalWrite(ColLatchPin, HIGH);
-    digitalWrite(ColLatchPin, LOW);
-
-    digitalWrite(DisplayEnablePin, LOW);
-    
-    if(y == 0) {
-      digitalWrite(RowDataPin, HIGH);
-    } else {
-      digitalWrite(RowDataPin, LOW);
-    }
-    
-    digitalWrite(RowClockPin, LOW);
-    delayMicroseconds(1);
-    digitalWrite(RowClockPin, HIGH);
-    
-    digitalWrite(DisplayEnablePin, HIGH);
-  }
 }
 
+int displayRow = 0;
+
+void update() {
+  for(int x = 0; x < 128 / 8; ++x) {
+    SPI.transfer(McZonk_bits[displayRow * (128/8) + x] ^ 0xff);
+  }
+    
+  digitalWrite(ColLatchPin, HIGH);
+  digitalWrite(ColLatchPin, LOW);
+
+  digitalWrite(DisplayEnablePin, LOW);
+    
+  if(displayRow == 0) {
+    digitalWrite(RowDataPin, HIGH);
+  } else {
+    digitalWrite(RowDataPin, LOW);
+  }
+    
+  digitalWrite(RowClockPin, LOW);
+  delayMicroseconds(1);
+  digitalWrite(RowClockPin, HIGH);
+    
+  digitalWrite(DisplayEnablePin, HIGH);
+  
+  displayRow += 1;
+  displayRow %= 32;
+}
